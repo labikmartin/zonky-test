@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://api.zonky.cz/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
