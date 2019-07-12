@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { DataService } from './../services/data.service';
 
 @Component({
   selector: 'zonky-loans-page',
@@ -19,11 +20,11 @@ import { Subscription, Observable } from 'rxjs';
 export class LoansPageComponent implements OnInit {
   loans: Observable<any>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     console.log('Hello from Loans Page');
 
-    this.loans = this.http.get('/api/loans/marketplace?rating__in=[AAAAA]');
+    this.loans = this.dataService.getLoans('AAAAAA');
   }
 }
