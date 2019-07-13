@@ -285,6 +285,16 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@ngrx/effects@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.1.0.tgz#76245d6d8658fbe84d610ade4016cc7d6091d09a"
+  integrity sha512-JQKD39Itsq70Mlq8kJ/yQuVbM08luAUexMqyi5HECe8izyRNkcIGJFh/2VkQSMLUGSNkU7qnT7y7xug8GA+AGA==
+
+"@ngrx/store@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.1.0.tgz#2ef648c591b2a56529a40ab3081327c49fb8ca93"
+  integrity sha512-1Pfe8uLoEjfLyXpX2UoqeSzYz4yPhsTlMVHIP7EybLD9YC/IrhecnCMmBCkNpJDRBQYqmJPbfUBrp8/q9wcB6g==
+
 "@ngtools/webpack@7.3.9":
   version "7.3.9"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-7.3.9.tgz#db115dba8cc0886d8d822723be4119d3849fb4e3"

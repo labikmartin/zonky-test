@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppTranslationModule } from './translation/translation.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, effects } from './store';
 
 @NgModule({
   declarations: [AppComponent, routedComponents],
@@ -12,7 +15,9 @@ import { AppTranslationModule } from './translation/translation.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppTranslationModule
+    AppTranslationModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot(effects)
   ],
   providers: [],
   bootstrap: [AppComponent]

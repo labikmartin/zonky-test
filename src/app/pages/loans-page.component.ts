@@ -4,6 +4,9 @@ import { first } from 'rxjs/operators';
 
 import { DataService } from './../services/data.service';
 import { Loan } from '../models/loan';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './../store';
+import { GetLoansList } from './../store';
 
 @Component({
   selector: 'zonky-loans-page',
@@ -18,16 +21,19 @@ import { Loan } from '../models/loan';
   `
 })
 export class LoansPageComponent implements OnInit {
-  constructor(private dataService: DataService) {}
+  constructor(
+    private store: Store<fromRoot.State>,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
     console.log('Hello from Loans Page');
   }
 
   onLoanRatingChange(loanRating: string) {
-    this.dataService
-      .getLoans(loanRating)
-      .pipe(first())
-      .subscribe(loans => this.dataService.storeLoans(loans));
+    this.store.dispatch(new GetLoansList('AAAAAA'));
+    this.store.select('loans').subscribe(loans => {
+      console.log('Loaaaans > ', loans);
+    });
   }
 }

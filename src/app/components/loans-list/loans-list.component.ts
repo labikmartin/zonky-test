@@ -1,6 +1,6 @@
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { DataService } from './../../services/data.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Loan } from 'src/app/models/loan';
 
 @Component({
