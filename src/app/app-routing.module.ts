@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoansListContainerComponent } from './containers/loans-list-container.component';
 import { LoanDetailContainerComponent } from './containers/loan-detail-container.component';
+import { LoanDetailGuard } from './guards/loan-detail-guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'detail',
-    component: LoanDetailContainerComponent
+    component: LoanDetailContainerComponent,
+    canActivate: [LoanDetailGuard]
   }
 ];
 

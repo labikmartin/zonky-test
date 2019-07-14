@@ -9,6 +9,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from './store';
 
+import { LoanDetailGuard } from './guards/loan-detail-guard';
+
 @NgModule({
   declarations: [AppComponent, routedComponents],
   imports: [
@@ -19,7 +21,7 @@ import { reducers, effects } from './store';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects)
   ],
-  providers: [],
+  providers: [LoanDetailGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
