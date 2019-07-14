@@ -12,9 +12,15 @@ import { reducers, effects } from './store';
 import { LoanDetailGuard } from './guards/loan-detail-guard';
 
 import { RiskRatingSelectionComponent } from './components/risk-rating-selection/risk-rating-selection.component';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 
 @NgModule({
-  declarations: [AppComponent, RiskRatingSelectionComponent, routedComponents],
+  declarations: [
+    AppComponent,
+    RiskRatingSelectionComponent,
+    PreloaderComponent,
+    routedComponents
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

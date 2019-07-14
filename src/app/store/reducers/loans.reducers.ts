@@ -21,6 +21,7 @@ export function reducer(
     case loansActions.GET_LOANS_LIST:
       return {
         ...state,
+        loans: [],
         loading: true
       };
 

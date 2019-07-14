@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { Subject, combineLatest } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../store';
@@ -27,6 +27,8 @@ import { RatingsEnum } from './../models/rating';
       {{ loan.name }}: {{ loan.amount }}
     </div>
 
+    <zonky-preloader *ngIf="loading"></zonky-preloader>
+
     <router-outlet></router-outlet>
   `
 })
@@ -38,22 +40,17 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject<void>();
 
   constructor(private store: Store<fromStore.State>, private router: Router) {
-    this.store
-      .select(fromStore.getLoansList)
-      .pipe(
-        filter(loans => loans && loans.length > 0),
-        takeUntil(this.unsubscribe)
-      )
-      .subscribe(loans => {
+    combineLatest(
+      this.store.select(fromStore.getLoansList),
+      this.store.select(fromStore.getLoanLoading)
+    )
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(data => {
+        const [loans, loading] = data;
         console.log('Loans List: ', loans);
         this.loans = loans;
         this.avgLoanAmount = this.calcAvgLoanAmount();
-      });
 
-    this.store
-      .select(fromStore.getLoanLoading)
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(loading => {
         console.log('Loading: ', loading);
         this.loading = loading;
       });
