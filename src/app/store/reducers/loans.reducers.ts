@@ -31,3 +31,6 @@ export function reducer(
 
   return state;
 }
+
+export const getLoansList = (state: State) => state.loans;
+export const getLoanDetail = (state: State) => state.loanDetail;

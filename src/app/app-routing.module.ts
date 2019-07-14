@@ -1,36 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoansPageComponent } from './pages/loans-page.component';
-import { LoansListComponent } from './components/loans-list/loans-list.component';
-import { LoanDetailComponent } from './components/loan-detail/loan-detail.component';
+import { LoansListContainerComponent } from './containers/loans-list-container.component';
+import { LoanDetailContainerComponent } from './containers/loan-detail-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoansPageComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'list',
-        pathMatch: 'full'
-      },
-      {
-        path: 'list',
-        component: LoansListComponent
-      },
-      {
-        path: 'detail',
-        component: LoanDetailComponent
-      }
-    ]
+    redirectTo: '/list',
+    pathMatch: 'full'
+  },
+  {
+    path: 'list',
+    component: LoansListContainerComponent
+  },
+  {
+    path: 'detail',
+    component: LoanDetailContainerComponent
   }
 ];
 
 export const routedComponents = [
-  LoansPageComponent,
-  LoansListComponent,
-  LoanDetailComponent
+  LoansListContainerComponent,
+  LoanDetailContainerComponent
 ];
 
 @NgModule({
