@@ -4,11 +4,13 @@ import { Loan } from './../../models/loan';
 export interface State {
   loans: Loan[];
   loanDetail: Loan;
+  loading: boolean;
 }
 
 export const initialState: State = {
   loans: [],
-  loanDetail: null
+  loanDetail: null,
+  loading: false
 };
 
 export function reducer(
@@ -16,10 +18,17 @@ export function reducer(
   action: loansActions.LoansActions
 ) {
   switch (action.type) {
+    case loansActions.GET_LOANS_LIST:
+      return {
+        ...state,
+        loading: true
+      };
+
     case loansActions.SET_LOANS:
       return {
         ...state,
-        loans: action.payload
+        loans: action.payload,
+        loading: false
       };
 
     case loansActions.SET_LOAN_DETAIL:
@@ -34,3 +43,4 @@ export function reducer(
 
 export const getLoansList = (state: State) => state.loans;
 export const getLoanDetail = (state: State) => state.loanDetail;
+export const getLoanLoading = (state: State) => state.loading;

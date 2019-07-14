@@ -25,3 +25,8 @@ export const getLoanDetail = createSelector(
   getLoansState,
   fromLoans.getLoanDetail
 );
+
+export const getLoanLoading = createSelector(
+  getLoansState,
+  fromLoans.getLoanLoading
+);

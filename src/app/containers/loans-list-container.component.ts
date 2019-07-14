@@ -33,6 +33,7 @@ import { RatingsEnum } from './../models/rating';
 export class LoansListContainerComponent implements OnInit, OnDestroy {
   loans: Loan[];
   avgLoanAmount: number;
+  loading: boolean;
 
   private unsubscribe = new Subject<void>();
 
@@ -47,6 +48,14 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
         console.log('Loans List: ', loans);
         this.loans = loans;
         this.avgLoanAmount = this.calcAvgLoanAmount();
+      });
+
+    this.store
+      .select(fromStore.getLoanLoading)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(loading => {
+        console.log('Loading: ', loading);
+        this.loading = loading;
       });
   }
 
