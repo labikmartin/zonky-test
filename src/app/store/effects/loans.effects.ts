@@ -13,10 +13,12 @@ export class LoansEffects {
   @Effect()
   getLoansList = this.actions.pipe(
     ofType(loansActions.GET_LOANS_LIST),
-    switchMap((action: loansActions.GetLoansList) =>
-      this.dataService
-        .getLoans(action.payload)
-        .pipe(map((loans: Loan[]) => new loansActions.SetLoans(loans)))
-    )
+    switchMap((action: loansActions.GetLoansList) => {
+      const ratingsStringified = JSON.stringify([action.payload]);
+
+      return this.dataService
+        .getLoans(ratingsStringified)
+        .pipe(map((loans: Loan[]) => new loansActions.SetLoans(loans)));
+    })
   );
 }

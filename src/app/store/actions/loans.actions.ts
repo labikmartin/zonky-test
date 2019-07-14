@@ -1,3 +1,4 @@
+import { RatingsEnum } from './../../models/rating';
 import { Loan } from './../../models/loan';
 import { Action } from '@ngrx/store';
 
@@ -7,7 +8,7 @@ export const SET_LOAN_DETAIL = '[Loans] Set Loan Detail';
 
 export class GetLoansList implements Action {
   readonly type = GET_LOANS_LIST;
-  constructor(public payload: string) {}
+  constructor(public payload: RatingsEnum) {}
 }
 
 export class SetLoans implements Action {

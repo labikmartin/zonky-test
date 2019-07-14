@@ -11,8 +11,10 @@ import { reducers, effects } from './store';
 
 import { LoanDetailGuard } from './guards/loan-detail-guard';
 
+import { RiskRatingSelectionComponent } from './components/risk-rating-selection/risk-rating-selection.component';
+
 @NgModule({
-  declarations: [AppComponent, routedComponents],
+  declarations: [AppComponent, RiskRatingSelectionComponent, routedComponents],
   imports: [
     BrowserModule,
     AppRoutingModule,

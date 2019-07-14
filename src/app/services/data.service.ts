@@ -2,6 +2,7 @@ import { Loan } from './../models/loan';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { RatingsEnum } from '../models/rating';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {

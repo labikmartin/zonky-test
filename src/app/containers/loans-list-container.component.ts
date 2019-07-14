@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromStore from '../store';
 import { Loan } from '../models/loan';
+import { RatingsEnum } from './../models/rating';
 
 @Component({
   selector: 'zonky-loans-list-container',
@@ -18,11 +19,13 @@ import { Loan } from '../models/loan';
       Average loan: {{ avgLoanAmount | currency: 'CZK':'code':null:'cs' }}
     </div>
 
+    <zonky-risk-rating-selection
+      (onRatingChange)="onLoanRatingChange($event)"
+    ></zonky-risk-rating-selection>
+
     <div *ngFor="let loan of loans" (click)="onToDetail(loan)">
       {{ loan.name }}: {{ loan.amount }}
     </div>
-
-    <div (click)="onLoanRatingChange('AAAAAA')">Test button</div>
 
     <router-outlet></router-outlet>
   `
@@ -56,7 +59,8 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
     this.unsubscribe.complete();
   }
 
-  onLoanRatingChange(loanRating: string) {
+  onLoanRatingChange(loanRating: RatingsEnum) {
+    console.log('Loan Rating Changed > ', loanRating);
     this.store.dispatch(new fromStore.GetLoansList(loanRating));
   }
 
