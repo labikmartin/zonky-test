@@ -1,16 +1,19 @@
 import * as loansActions from './../actions/loans.actions';
 import { Loan } from './../../models/loan';
+import { RatingsEnum } from './../../models/rating';
 
 export interface State {
   loans: Loan[];
   loanDetail: Loan;
   loading: boolean;
+  selectedRating: RatingsEnum;
 }
 
 export const initialState: State = {
   loans: [],
   loanDetail: null,
-  loading: false
+  loading: false,
+  selectedRating: null
 };
 
 export function reducer(
@@ -22,7 +25,8 @@ export function reducer(
       return {
         ...state,
         loans: [],
-        loading: true
+        loading: true,
+        selectedRating: action.payload
       };
 
     case loansActions.SET_LOANS:
@@ -45,3 +49,4 @@ export function reducer(
 export const getLoansList = (state: State) => state.loans;
 export const getLoanDetail = (state: State) => state.loanDetail;
 export const getLoanLoading = (state: State) => state.loading;
+export const getSelectedRating = (state: State) => state.selectedRating;

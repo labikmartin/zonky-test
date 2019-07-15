@@ -1,22 +1,25 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, combineLatest } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, first } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
-import * as fromStore from '../store';
-import { Loan } from '../models/loan';
-import { RatingsEnum } from './../models/rating';
+import * as fromStore from '../../store';
+import { Loan } from '../../models/loan';
+import { RatingsEnum } from '../../models/rating';
 
 @Component({
   selector: 'zonky-loans-list-container',
+  styleUrls: ['./loans-list-container.component.scss'],
   template: `
     <zonky-risk-rating-selection
       (onRatingChange)="onLoanRatingChange($event)"
+      [selectedRating]="selectedRating"
     ></zonky-risk-rating-selection>
 
-    <div>
-      Average loan: {{ avgLoanAmount | currency: 'CZK':'code':null:'cs' }}
+    <div class="avg" [ngClass]="{ show: avgLoanAmount }">
+      {{ 'loan.avg' | translate }}:
+      {{ avgLoanAmount | currency: 'CZK':'code':null:'cs' }}
     </div>
 
     <div class="flexGrid flexGrid--m">
@@ -40,6 +43,7 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
   loans: Loan[];
   avgLoanAmount: number;
   loading: boolean;
+  selectedRating: RatingsEnum;
 
   private unsubscribe = new Subject<void>();
 
@@ -62,6 +66,10 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.log('Hello from Loans Page');
+    this.store
+      .select(fromStore.getSelectedRating)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(selectedRating => (this.selectedRating = selectedRating));
   }
 
   ngOnDestroy() {

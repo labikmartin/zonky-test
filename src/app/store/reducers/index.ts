@@ -30,3 +30,8 @@ export const getLoanLoading = createSelector(
   getLoansState,
   fromLoans.getLoanLoading
 );
+
+export const getSelectedRating = createSelector(
+  getLoansState,
+  fromLoans.getSelectedRating
+);

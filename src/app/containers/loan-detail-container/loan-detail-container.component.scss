@@ -1,0 +1,32 @@
+@import '../../../lib/colors';
+@import '../../../lib/breakpoints';
+
+.detail {
+  padding-top: 20px;
+
+  &__name {
+    padding-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    color: $mediumturqoise;
+  }
+
+  &__title {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__img {
+    @media only screen and (max-width: #{ map-get($breakpoints, "smd")}) {
+      margin: auto;
+      display: block;
+    }
+  }
+
+  @each $rating, $value in $ratings {
+    .#{$rating} {
+      color: $value;
+    }
+  }
+}

@@ -1,13 +1,17 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { RatingsEnum } from './../../models/rating';
 
 @Component({
   selector: 'zonky-risk-rating-selection',
+  styleUrls: ['./risk-rating-selection.component.scss'],
   template: `
-    <div class="flexGrid">
+    <div class="flexGrid riskRatingWrapper">
       <div
         *ngFor="let rating of enumKeys(ratings)"
         (click)="onLoanRatingChange(rating)"
+        [class]="'riskRating__' + rating"
+        [ngClass]="{ selected: rating === selectedRating }"
+        class="riskRating"
       >
         {{ ratings[rating] | number: null:'cs' }} %
       </div>
@@ -15,11 +19,16 @@ import { RatingsEnum } from './../../models/rating';
   `
 })
 export class RiskRatingSelectionComponent {
+  @Input() selectedRating: RatingsEnum;
   @Output() onRatingChange = new EventEmitter<RatingsEnum>();
 
   ratings = RatingsEnum;
 
   onLoanRatingChange(rating: RatingsEnum) {
+    if (rating === this.selectedRating) {
+      return;
+    }
+
     this.onRatingChange.emit(rating);
   }
 

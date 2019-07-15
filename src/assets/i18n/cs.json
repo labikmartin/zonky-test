@@ -1,3 +1,7 @@
 {
-  "yolo": "weeeee"
+  "loan.avg": "Průměrný úvěr pro tento úrok",
+  "loan.amount": "Investice",
+  "loan.rating": "Roční úrok",
+  "loan.story": "Příběh",
+  "loan.remainingInvestment": "Zbvývá k investování"
 }

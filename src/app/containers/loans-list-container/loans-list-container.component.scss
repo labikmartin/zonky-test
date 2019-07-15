@@ -1,0 +1,13 @@
+@import '../../../lib/colors';
+
+.avg {
+  padding: 40px 0 50px;
+  font-size: 20px;
+  text-align: center;
+  color: $mediumturqoise;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+  }
+}

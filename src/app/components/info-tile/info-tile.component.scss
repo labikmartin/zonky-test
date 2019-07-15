@@ -1,6 +1,10 @@
 @import '../../../lib/mixins';
 @import '../../../lib/colors';
 
+:host {
+  min-width: 300px;
+}
+
 .contentPadding {
   padding: 10px 10px 0;
 }

@@ -1,4 +1,31 @@
 $white: #fff;
+$black: #000;
 
 $mediumturqoise: #48d1cc;
 $sun: #faa61a;
+
+$aaaaaa: #c0498b;
+$aaaaa: #8b59be;
+$aaaa: #596abe;
+$aaa: #599ebe;
+$aae: #59bea8;
+$aa: #67cd75;
+$ae: #9acd67;
+$a: #cebe5a;
+$b: #d7954b;
+$c: #e75637;
+$d: #d12f2f;
+
+$ratings: (
+  'AAAAAA': $aaaaaa,
+  'AAAAA': $aaaaa,
+  'AAAA': $aaaa,
+  'AAA': $aaa,
+  'AAE': $aae,
+  'AA': $aa,
+  'AE': $ae,
+  'A': $a,
+  'B': $b,
+  'C': $c,
+  'D': $d
+);
