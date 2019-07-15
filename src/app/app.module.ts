@@ -12,12 +12,14 @@ import { reducers, effects } from './store';
 import { LoanDetailGuard } from './guards/loan-detail-guard';
 
 import { RiskRatingSelectionComponent } from './components/risk-rating-selection/risk-rating-selection.component';
+import { InfoTileComponent } from './components/info-tile/info-tile.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RiskRatingSelectionComponent,
+    InfoTileComponent,
     PreloaderComponent,
     routedComponents
   ],

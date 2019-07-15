@@ -1,0 +1,91 @@
+@import 'mixins';
+@import 'breakpoints';
+
+.flexGrid {
+  @include flex();
+  margin: -5px;
+  &--spaced {
+    justify-content: space-between;
+  }
+  &--spcAround {
+    justify-content: space-around;
+  }
+  &--flexStart {
+    justify-content: flex-start;
+    flex: 1;
+  }
+  &--flexEnd {
+    justify-content: flex-end;
+  }
+  &--alignCenter {
+    align-items: center;
+  }
+  &--alignBaseline {
+    align-items: baseline;
+  }
+  &--alignStart {
+    align-items: flex-start;
+  }
+  &--alignEnd {
+    align-items: flex-end;
+  }
+  &--noWrap {
+    flex-wrap: nowrap;
+  }
+  &--grow {
+    flex-grow: 1;
+    > * {
+      flex-grow: 1;
+    }
+  }
+  &--dirColumn {
+    flex-direction: column;
+    align-items: center;
+  }
+  // DIFFERENT GAP SIZE
+  &--s {
+    margin: -10px;
+    > [class^='c-'] {
+      padding: 10px;
+    }
+  }
+  &--m {
+    margin: -20px;
+    > [class^='c-'] {
+      padding: 20px;
+    }
+  }
+  &--l {
+    margin: -40px;
+    > [class^='c-'] {
+      padding: 40px;
+    }
+  }
+  // GAPS
+  &--noGap {
+    margin: 0;
+  }
+  &--gapTop {
+    margin-top: 15px;
+  }
+}
+
+//- ### ### ### COLUMNS
+[class^='c-'] {
+  padding: 5px;
+}
+
+@include columns('');
+
+@each $breakpoint, $value in $breakpoints {
+  @media only screen and (max-width: #{$value}) {
+    @include columns('-#{$breakpoint}');
+  }
+}
+
+// CONTAINER
+.container {
+  width: 1200px;
+  max-width: 95%;
+  margin: auto;
+}

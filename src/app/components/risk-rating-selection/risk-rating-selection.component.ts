@@ -4,11 +4,13 @@ import { RatingsEnum } from './../../models/rating';
 @Component({
   selector: 'zonky-risk-rating-selection',
   template: `
-    <div
-      *ngFor="let rating of enumKeys(ratings)"
-      (click)="onLoanRatingChange(rating)"
-    >
-      {{ ratings[rating] }}
+    <div class="flexGrid">
+      <div
+        *ngFor="let rating of enumKeys(ratings)"
+        (click)="onLoanRatingChange(rating)"
+      >
+        {{ ratings[rating] | number: null:'cs' }} %
+      </div>
     </div>
   `
 })

@@ -1,0 +1,59 @@
+@import '../../../lib/mixins';
+@import '../../../lib/colors';
+
+.contentPadding {
+  padding: 10px 10px 0;
+}
+
+.infoTile {
+  @include size(100%, 400px);
+  position: relative;
+  box-shadow: 0 0 3px $mediumturqoise;
+  transition: box-shadow 0.3s linear;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 10px $sun;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to top,
+      rgba($white, 1) 4%,
+      rgba($white, 0) 10%
+    );
+    pointer-events: none;
+  }
+
+  &__title {
+    @extend .contentPadding;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    @extend .contentPadding;
+    font-size: 16px;
+    font-weight: 500;
+    color: $sun;
+  }
+
+  &__img {
+    height: 225px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__content {
+    @extend .contentPadding;
+    margin-bottom: 10px;
+    font-size: 14px;
+    overflow: hidden;
+  }
+}

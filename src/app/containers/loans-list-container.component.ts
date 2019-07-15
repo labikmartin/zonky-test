@@ -11,25 +11,29 @@ import { RatingsEnum } from './../models/rating';
 @Component({
   selector: 'zonky-loans-list-container',
   template: `
-    <div>Hello from Loans Page</div>
-
-    <div>{{ 'yolo' | translate }}</div>
+    <zonky-risk-rating-selection
+      (onRatingChange)="onLoanRatingChange($event)"
+    ></zonky-risk-rating-selection>
 
     <div>
       Average loan: {{ avgLoanAmount | currency: 'CZK':'code':null:'cs' }}
     </div>
 
-    <zonky-risk-rating-selection
-      (onRatingChange)="onLoanRatingChange($event)"
-    ></zonky-risk-rating-selection>
-
-    <div *ngFor="let loan of loans" (click)="onToDetail(loan)">
-      {{ loan.name }}: {{ loan.amount }}
+    <div class="flexGrid flexGrid--m">
+      <zonky-info-tile
+        *ngFor="let loan of loans"
+        (click)="onToDetail(loan)"
+        [image]="'api' + loan.photos[0]?.url"
+        [title]="loan.name"
+        [subtitle]="loan.amount | currency: 'CZK':'code':null:'cs'"
+        [content]="loan.story"
+        class="c-4"
+      >
+        {{ loan.name }}: {{ loan.amount }}
+      </zonky-info-tile>
     </div>
 
     <zonky-preloader *ngIf="loading"></zonky-preloader>
-
-    <router-outlet></router-outlet>
   `
 })
 export class LoansListContainerComponent implements OnInit, OnDestroy {
