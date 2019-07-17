@@ -54,7 +54,6 @@ export class LoanDetailContainerComponent implements OnInit {
       .select(fromStore.getLoanDetail)
       .pipe(first())
       .subscribe(loan => {
-        console.log('Loan Detail: ', loan);
         this.loan = loan;
       });
   }

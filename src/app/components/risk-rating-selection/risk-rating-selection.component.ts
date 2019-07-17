@@ -9,7 +9,7 @@ import { RatingsEnum } from './../../models/rating';
       <div
         *ngFor="let rating of enumKeys(ratings)"
         (click)="onLoanRatingChange(rating)"
-        [class]="'riskRating__' + rating"
+        [class]="'riskRating__rating ' + rating"
         [ngClass]="{ selected: rating === selectedRating }"
         class="riskRating"
       >
@@ -34,6 +34,7 @@ export class RiskRatingSelectionComponent {
 
   enumKeys(o) {
     const keys = o ? Object.keys(o) : [];
+
     return keys.filter((key: any) => isNaN(key));
   }
 }

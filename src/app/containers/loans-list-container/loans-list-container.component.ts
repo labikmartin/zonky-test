@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, combineLatest } from 'rxjs';
-import { takeUntil, first } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from '../../store';
@@ -26,20 +26,19 @@ import { RatingsEnum } from '../../models/rating';
       <zonky-info-tile
         *ngFor="let loan of loans"
         (click)="onToDetail(loan)"
-        [image]="'api' + loan.photos[0]?.url"
+        [image]="'api' + (loan?.photos)[0].url"
         [title]="loan.name"
         [subtitle]="loan.amount | currency: 'CZK':'code':null:'cs'"
         [content]="loan.story"
         class="c-4"
       >
-        {{ loan.name }}: {{ loan.amount }}
       </zonky-info-tile>
     </div>
 
     <zonky-preloader *ngIf="loading"></zonky-preloader>
   `
 })
-export class LoansListContainerComponent implements OnInit, OnDestroy {
+export class LoansListContainerComponent implements OnDestroy {
   loans: Loan[];
   avgLoanAmount: number;
   loading: boolean;
@@ -50,26 +49,18 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromStore.State>, private router: Router) {
     combineLatest(
       this.store.select(fromStore.getLoansList),
-      this.store.select(fromStore.getLoanLoading)
+      this.store.select(fromStore.getLoanLoading),
+      this.store.select(fromStore.getSelectedRating)
     )
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(data => {
-        const [loans, loading] = data;
-        console.log('Loans List: ', loans);
+        const [loans, loading, selectedRating] = data;
+
         this.loans = loans;
         this.avgLoanAmount = this.calcAvgLoanAmount();
-
-        console.log('Loading: ', loading);
+        this.selectedRating = selectedRating;
         this.loading = loading;
       });
-  }
-
-  ngOnInit() {
-    console.log('Hello from Loans Page');
-    this.store
-      .select(fromStore.getSelectedRating)
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(selectedRating => (this.selectedRating = selectedRating));
   }
 
   ngOnDestroy() {
@@ -78,7 +69,6 @@ export class LoansListContainerComponent implements OnInit, OnDestroy {
   }
 
   onLoanRatingChange(loanRating: RatingsEnum) {
-    console.log('Loan Rating Changed > ', loanRating);
     this.store.dispatch(new fromStore.GetLoansList(loanRating));
   }
 

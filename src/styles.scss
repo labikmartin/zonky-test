@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'lib/flex-grid';
 @import 'lib/fonts';
+@import 'lib/colors';
 
 * {
   box-sizing: border-box;
@@ -9,4 +10,10 @@
 
 img {
   max-width: 100%;
+}
+
+@each $rating, $value in $ratings {
+  .#{$rating} {
+    color: $value;
+  }
 }
