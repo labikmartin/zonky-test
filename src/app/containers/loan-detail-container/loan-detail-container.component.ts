@@ -19,7 +19,7 @@ import { RatingsEnum } from 'src/app/models/rating';
       </div>
 
       <div class="c-8  c-smd-12">
-        <div class="flexGrid flexGrid">
+        <div class="flexGrid">
           <div class="c-12 detail__title">{{ 'loan.amount' | translate }}</div>
           <div class="c-12">
             {{ loan.amount | currency: 'CZK':'code':null:'cs' }}
